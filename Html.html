@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="moodpickerstyle.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body> 
+<div id="canvascontainer" style="overflow: hidden;">
+<canvas id="myCanvas">
+</canvas>
+    <div id="menubar"><center>MENU WILL BE HERE</center></div>
+    <div id="maintext" class="fading-text"></div>
+    <div id="slidercontainer" style="position: absolute;">
+        <center>
+        <textbox id="textbox" style="display: block;">How do you like your music?</textbox>
+        </center>
+        <center>
+    <input type="range" id="selector" min="0" step="0.01" max="1" value="0.5" style="position: relative;">
+    </center>
+    </div>
+    <img src="moon_pixian_ai.png" id="moon" alt="외부 이미지" style="z-index: 2; position: absolute; left : 950px; width:400px; height: auto; "/>
+    
+    <img src="sun_pixian_ai.png" id="sun" style="position: absolute; z-index: 2; width:  240px; height: auto;right : 1000px; top:50px;">
+        <script src="background.js"></script>
+
+    <button type="submit" title="click" id="submitbutton">EXAMPLE</button>
+</body>
+</html>
