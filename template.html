@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<!-- 메뉴 바 디자인과 하단 바 디자인을 미리 삽입해 두었습니다. -->
+<style>
+#menubar{
+top:0px;
+left:0px;
+position: absolute;
+z-index: 2;
+width: 100vw;
+height: 50px;
+background-color: black;
+opacity: 80%;
+box-shadow: 0px 1px 10px white;
+color: white;
+}
+
+#menu a{
+  display : block;
+  position : relative;
+  display: inline;
+  text-decoration: none;
+  top : 12px;
+  margin-left : 150px;
+  font-weight: 200;
+  padding-left: 10px;
+  padding-right: 10px;
+  color : white;
+ text-shadow: 1px 1px 0px gray;
+}
+
+#bottomarea{
+  color : gray;
+  text-align: center;
+  font-weight: 100;
+  font-size: 20px;
+  position: absolute;
+  z-index: 2;
+  left:0px;
+  width: 100vw;
+  top:90%;
+  height: 78.5px;
+  background-color: black;
+  opacity: 75%;
+}
+</style>
+<!--스타일 지정 종료-->
+
+<!-- 메뉴 바 부분입니다. -->
+<div id="menubar">
+
+<span id="menu">
+<h2 style="position: absolute; top: -15px; left : 20px; font-weight: 200;">|Logo|</h2>
+<a href="/">Home</a>
+<a href="genre">Genre</a>
+<a href="stats">Statistics</a>
+<a href="color">Colors</a>
+</span>
+
+</div>
+
+<!--하단 바 부분입니다.-->
+<div id="bottomarea">Internet And Web Basics : Team 15<br>
+    202555375 최민준
+    202555391 홍유정
+    202555616 문보미
+</div>
+</body>
+</html>

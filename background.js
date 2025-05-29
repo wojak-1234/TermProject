@@ -111,3 +111,4 @@ sliderval.oninput = function() {
     maintext.style.opacity = 1;
   }, 300);
 };
+

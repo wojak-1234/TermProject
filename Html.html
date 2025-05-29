@@ -1,32 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="moodpickerstyle.css">
+<link rel="stylesheet" href="moodpickerstyle.css">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
 </head>
 
 <body> 
+
 <div id="canvascontainer" style="overflow: hidden;">
 <canvas id="myCanvas">
 </canvas>
-    <div id="menubar"><center>MENU WILL BE HERE</center></div>
-    <div id="maintext" class="fading-text"></div>
-    <div id="slidercontainer" style="position: absolute;">
-        <center>
-        <textbox id="textbox" style="display: block;">How do you like your music?</textbox>
-        </center>
-        <center>
-    <input type="range" id="selector" min="0" step="0.01" max="1" value="0.5" style="position: relative;">
-    </center>
-    </div>
-    <img src="moon_pixian_ai.png" id="moon" alt="외부 이미지" style="z-index: 2; position: absolute; left : 950px; width:400px; height: auto; "/>
-    
-    <img src="sun_pixian_ai.png" id="sun" style="position: absolute; z-index: 2; width:  240px; height: auto;right : 1000px; top:50px;">
-        <script src="background.js"></script>
 
-    <button type="submit" title="click" id="submitbutton">EXAMPLE</button>
+<!-- 메뉴 바 부분입니다. -->
+<div id="menubar">
+<!--
+<img src="/logo_pixian_ai.png" style="width: 45px; height: auto; position : absolute; left:40px; opacity: 50%;"/>
+-->
+<span id="menu">
+<h2 style="position: absolute; top: -15px; left : 20px; font-weight: 200;">|Logo|</h2>
+<a href="/">Home</a>
+<a href="genre">Genre</a>
+<a href="stats">Statistics</a>
+<a href="color">Colors</a>
+</span>
+</div>
+
+<!-- Mood 나타냄. -->
+<div id="maintext" class="fading-text"></div>
+
+<!-- 슬라이더를 포함한 박스 관련 부분입니다. -->
+<form action="/submitmood" method="POST">
+<div id="slidercontainer" style="position: absolute;">
+<center>
+<textbox id="textbox" style="display: block;">How do you like your music?</textbox>
+</center>
+<center>
+<input type="range" id="selector" name="moodvalue" min="0" step="0.01" max="1" value="0.5" style="position: relative;">
+</center>
+</div>
+<button type="submit" title="click" id="submitbutton">Recommend me!</button>
+</form>
+<!-- 달 관련 이미지 부분입니다.-->
+<img src="moon_pixian_ai.png" id="moon" alt="외부 이미지" style="z-index: 2; position: absolute; left : 950px; width:400px; height: auto; "/>
+
+<!-- 해 관련 이미지 부분입니다.-->
+<img src="sun_pixian_ai.png" id="sun" style="position: absolute; z-index: 2; width:  240px; height: auto;right : 1000px; top:50px;">
+<script src="background.js"></script>
+<!-- 제출 버튼 관련 부분입니다. -->
+<div id="bottomarea">Internet And Web Basics : Team 15<br>
+    202555375 최민준
+    202555391 홍유정
+    202555616 문보미
+</div>
 </body>
 </html>
