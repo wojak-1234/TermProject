@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genre Chart</title>
+  <style>
+        .genre-button-container {
+       height: 80vh; 
+       display: flex; 
+       flex-direction: column;
+       justify-content: center; 
+       align-items: center;
+       margin-top: 80px;
+  }
+
+   .genre-button {
+    min-width: 160px;
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #111; 
+    color: #00cc66; 
+    border: 1px solid #00cc66;
+    border-radius: 6px;
+  }
+  #menubar{
+top:0px;
+left:0px;
+position: absolute;
+z-index: 2;
+width: 100vw;
+height: 50px;
+background-color: black;
+opacity: 80%;
+box-shadow: 0px 1px 10px white;
+color: white;
+}
+
+#menu a{
+  display : block;
+  position : relative;
+  display: inline;
+  text-decoration: none;
+  top : 12px;
+  margin-left : 150px;
+  font-weight: 200;
+  padding-left: 10px;
+  padding-right: 10px;
+  color : white;
+ text-shadow: 1px 1px 0px gray;
+}
+
+#bottomarea{
+  color : gray;
+  text-align: center;
+  font-weight: 100;
+  font-size: 20px;
+  position: absolute;
+  z-index: 2;
+  left:0px;
+  width: 100vw;
+  top:90%;
+  height: 78.5px;
+  background-color: black;
+  opacity: 75%;
+}
+  </style>
+</head>
+
+<body>
+  <!-- 메뉴 바 -->
+  <div id="menubar">
+    <span id="menu">
+      <h2 style="position: absolute; top: -15px; left: 20px; font-weight: 200;">|Logo|</h2>
+      <a href="template.html">Home</a>
+      <a href="genre.html">Genre</a>
+      <a href="stats">Statistics</a>
+      <a href="color">Colors</a>
+    </span>
+  </div>
+
+  <!-- 콘텐츠 -->
+  <div class="genre-button-container">
+    <h1 style="color: #00cc66">최근 재생 음악 장르 분포</h1>
+    <button id="loginBtn" class="genre-button">Spotify 로그인하기</button>
+    <button id="fetchGenre" class="genre-button">장르 분포 보기</button>
+    <canvas id="genreChart" width="400" height="400" style="margin-top: 20px;"></canvas>
+  </div>
+
+  <!-- 하단 바 -->
+  <div id="bottomarea">
+    Internet And Web Basics : Team 15<br>
+    202555375 최민준<br>
+    202555391 홍유정<br>
+    202555616 문보미
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      saveAccessToken(); // URL에 토큰 있으면 localStorage에 저장
+
+      $("#loginBtn").click(function () {
+        redirectToSpotifyLogin();
+      });
+
+      $("#fetchGenre").click(function () {
+        const token = getSavedAccessToken();
+        if (!token) {
+          alert("먼저 Spotify 로그인을 해주세요.");
+          return;
+        }
+
+        $.ajax({
+          url: "https://api.spotify.com/v1/me/player/recently-played?limit=50",
+          type: "GET",
+          headers: {
+            "Authorization": "Bearer " + token
+          },
+          success: function (response) {
+            const genreMap = {
+              "pop": 6,
+              "rock": 4,
+              "hip hop": 3,
+              "jazz": 2
+            }; // TODO: 실제 아티스트 API로 장르 추출
+            drawChart(genreMap);
+          },
+          error: function () {
+            alert("API 요청 실패: 토큰이 만료되었거나 잘못되었습니다.");
+          }
+        });
+      });
+
+      function drawChart(genreMap) {
+        const ctx = document.getElementById("genreChart").getContext("2d");
+        const labels = Object.keys(genreMap);
+        const data = Object.values(genreMap);
+        const colors = labels.map(getGenreColor);
+
+        new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: labels,
+            datasets: [{
+              data: data,
+              backgroundColor: colors
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'bottom'
+              }
+            }
+          }
+        });
+      }
+
+      function getGenreColor(genre) {  //장르별 색 구분분
+        if (genre.includes("pop")) return "#f8b195";
+        if (genre.includes("rock")) return "#c06c84";
+        if (genre.includes("hip hop")) return "#6c5b7b";
+        if (genre.includes("jazz")) return "#355c7d";
+        return "#f67280"; //기본색색
+      }
+    });
+  </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="rogin.js"></script>
+</body>
+</html>
