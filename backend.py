@@ -3,6 +3,7 @@ import requests
 import urllib.parse
 import base64
 import json
+
 app = Flask(__name__)
 # 클라이언트 아이디 , 클라이언트 시크릿 , login 이후 redirect 할 주소 (/callback) 을 정의.
 app.secret_key = 'verysecret'
