@@ -1,0 +1,240 @@
+@font-face {
+  font-family: 'lightfont';
+  src: url('font/AntipastoPro-Extralight_trial.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#text{
+  position: relative;
+  left:10px;
+}
+#menubar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100vw;
+  height: 50px;
+  background-color: black;
+  opacity: 0.8;
+  box-shadow: 0px 1px 10px white;
+  color: white;
+}
+
+/* 메뉴 항목 래퍼 */
+#menu {
+  display: flex;
+  gap: 15px;
+}
+
+/* 메뉴 링크 */
+#menu a {
+  
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  text-shadow: 1px 1px 0px gray;
+  font-family: 'lightfont', sans-serif;
+  font-size: 20px;
+  transition: color 0.3s ease;
+  padding-right: 20px;
+}
+
+#menu a:hover {
+  color: #f5f5f5;
+}
+
+/* 우측 로그인 텍스트 */
+#successlogin {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center ;
+  font-weight: 400;
+  color: white;
+  font-size: 16px;
+  max-width: 200px;
+  padding-left: 100px;
+}
+body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+             background-image: linear-gradient(to right, black, #404040 50%, black);;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-bottom: 70px;
+        }
+#profileimage{
+  height : 30px;
+  width: auto;
+  border-radius: 100px;
+}
+#nameplace{
+  font-size: 20px;
+  padding-right : 80px;
+}
+        #whole {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: calc(100vh - 120px);
+            padding-top: 80px;
+            padding-bottom: 20px;
+            width: 100%;
+            box-sizing: border-box;
+            flex-grow: 1;
+        }
+
+        #song-search-section {
+            margin-top: 30px;
+            padding: 25px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 12px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
+            color: white;
+            width: 90%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        #song-query-input {
+            width: 80%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1em;
+            outline: none; /* 포커스 시 외곽선 제거 */
+        }
+
+        #song-query-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        #search-song-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            background-color: black; /* Spotify Green */
+            color: white;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #search-song-btn:hover {
+            background-color: grey; /* Slightly lighter green on hover */
+        }
+
+        #song-results-display {
+            width: 100%;
+            min-height: 100px;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            overflow-y: auto;
+            color: white;
+            text-align: center;
+        }
+
+        .result-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease;
+            text-align: left;
+        }
+
+        .result-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .album-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-div {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            flex-grow: 1;
+        }
+
+        .info-div h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.3em;
+            color: #fff;
+        }
+
+        .info-div p {
+            margin: 2px 0;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .info-div strong {
+            color: #fff;
+        }
+
+        #bottomarea {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #f0f0f0;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 0.9em;
+            line-height: 1.4;
+            z-index: 1000;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease;
+        }
+
+        #bottomarea:hover {
+            background-color: rgba(0, 0, 0, 0.95);
+        }
+#whole {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 120px);
+    padding-top: 80px;
+    padding-bottom: 80px;
+    width: 100%;
+    box-sizing: border-box;
+}

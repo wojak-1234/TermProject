@@ -28,6 +28,7 @@ sliderval=document.getElementById("selector"); //slider 값 조회 변수
 const moonimg = document.getElementById("moon"); // moon 이미지 값 조회 변수
 const sunimg = document.getElementById("sun"); // sun 이미지 값 조회 변수
 const maintext = document.getElementById("maintext"); // maintext 내용 집어넣기 위한 변수
+const login = document.getElementById("successlogin"); // 로그인 박스 관련 해서 내용 바꾸기 위한 변수.
 
 let progress = 0;
 
@@ -92,8 +93,6 @@ sliderval.oninput = function() {
   moonimg.style.top = (150 - 100 * alpha) + 'px';
   sunimg.style.top = (90 + 100 * alpha) + 'px';
 
-  // 상태 텍스트 변경
-  // 텍스트 변경 전에 투명하게 만들기
   maintext.style.opacity = 0;
 
   // 조금 기다렸다가 텍스트 바꾸고 다시 보이게
@@ -112,3 +111,15 @@ sliderval.oninput = function() {
   }, 300);
 };
 
+window.addEventListener('load', () => {
+  const initialValue = parseFloat(sliderval.value);
+
+  if (initialValue <= 0.5) {
+    daytosunsetanimate(initialValue);
+  } else {
+    sunsettonightanimate(initialValue);
+  }
+
+  // 해와 달 위치 및 텍스트 상태 업데이트도 실행
+  sliderval.oninput.call(sliderval);
+});

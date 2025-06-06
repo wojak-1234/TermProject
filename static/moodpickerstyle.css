@@ -1,0 +1,208 @@
+@font-face {
+  font-family: 'lightfont';
+  src: url('font/AntipastoPro-Extralight_trial.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 🌄 그라데이션 배경 캔버스 */
+canvas {
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* 🌙 해/달 이미지 indicator */
+#indicator {
+  position: absolute;
+  z-index: 2;
+}
+
+/* 📢 텍스트 컨테이너 */
+#txtcontainer {
+  font-weight: bold;
+  color: white;
+  position: relative;
+  bottom: 10px;
+  left: 10px;
+  font-size: 20px;
+}
+
+/* 🎚️ 슬라이더 스타일 */
+input#selector {
+  position: relative;
+  -webkit-appearance: none;
+  width: 300px;
+  height: 10px;
+  border-radius: 15px;
+  background: linear-gradient(to right, #222831, #393E46, #948979, #DFD0B8);
+  outline: none;
+  overflow: hidden;
+}
+
+input#selector::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 2px;
+  box-shadow: -350px 0px 0px 340px #f5f5f5;
+  cursor: pointer;
+}
+
+/* 🧱 슬라이더와 텍스트 포함 상자 */
+#slidercontainer {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(-50px);
+  box-shadow: 0px 2px 0px #ECDFCC;
+  width: 400px;
+  position: relative;
+  z-index: 100;
+  background-color: black;
+  border-radius: 5px;
+}
+
+/* 💬 "How do you like your music?" 텍스트 */
+#textbox {
+  letter-spacing: 1px;
+  font-family: 'lightfont', sans-serif;
+  display: inline;
+  position: relative;
+  z-index: inherit;
+  color: white;
+  font-weight: 200;
+  text-shadow: 0px 2px 0px #948979;
+}
+
+/* 💡 Vibe 설명 텍스트 */
+#maintext {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(-150px);
+  z-index: 2;
+  color: white;
+  font-weight: 200;
+  text-shadow: 0px 4px 0px grey;
+  font-size: 35px;
+  transition: opacity 0.5s ease;
+}
+
+/* 🔘 Submit 버튼 */
+#submitbutton {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(90px);
+  position: absolute;
+  z-index: 2;
+  width: 100px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #393E46;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* 상단 메뉴 바 */
+#menubar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100vw;
+  height: 50px;
+  background-color: black;
+  opacity: 0.8;
+  box-shadow: 0px 1px 10px white;
+  color: white;
+}
+
+/* 메뉴 항목 래퍼 */
+#menu {
+  display: flex;
+  gap: 15px;
+}
+
+/* 메뉴 링크 */
+#menu a {
+  
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  text-shadow: 1px 1px 0px gray;
+  font-family: 'lightfont', sans-serif;
+  font-size: 20px;
+  transition: color 0.3s ease;
+  padding-right: 20px;
+}
+
+#menu a:hover {
+  color: #f5f5f5;
+}
+
+/* 우측 로그인 텍스트 */
+#successlogin {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center ;
+  font-weight: 400;
+  color: white;
+  font-size: 16px;
+  max-width: 200px;
+  padding-left: 100px;
+}
+
+
+        #bottomarea {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #f0f0f0;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 0.9em;
+            line-height: 1.4;
+            z-index: 1000;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease;
+        }
+
+        #bottomarea:hover {
+            background-color: rgba(0, 0, 0, 0.95);
+        }
+
+/* 텍스트 위치 조정 */
+#text {
+  position: relative;
+  left: 10px;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;  
+    align-items: center; /* 전체 콘텐츠 수평 중앙 정렬 */
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤 허용 */
+    overflow-x: hidden; /* 가로 스크롤 방지 */
+}
+#profileimage{
+  height : 30px;
+  width: auto; 
+  border-radius: 100px;
+}
+#nameplace{
+  font-size: 20px;
+  padding-right : 80px;
+}

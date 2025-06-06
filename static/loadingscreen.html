@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* #menubar는 화면 상단에 고정된 바 역할 */
+#menubar {
+    position: fixed; /* 화면 스크롤과 무관하게 상단 고정 */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.8); /* 투명 배경 (텍스트 영향 X) */
+    box-shadow: 0px 1px 10px rgba(255, 255, 255, 0.5); /* 흰색 그림자 */
+    z-index: 1000; /* 다른 요소 위에 오도록 */
+    display: flex; /* 내부 콘텐츠(header-container)를 정렬하기 위해 flex 사용 */
+    align-items: center; /* header-container를 #menubar 안에서 세로 중앙 정렬 */
+}
+
+/* 메뉴 바의 실제 콘텐츠를 담는 컨테이너 */
+.header-container {
+    display: flex; /* Flexbox 활성화 */
+    align-items: center; /* 자식 요소들(로고, nav, user-status-area)을 세로 중앙 정렬 */
+    justify-content: space-between; /* 로고와 로그인/상태 표시 영역을 양 끝으로, 메뉴는 중간으로 */
+    width: 100%; /* #menubar의 전체 너비를 차지 */
+    height: 100%; /* #menubar의 전체 높이를 차지 */
+    padding: 0 20px; /* 좌우 패딩으로 여백 주기 */
+}
+
+/* 로고 스타일 */
+.logo {
+    margin: 0; /* h2의 기본 마진 제거 */
+    font-weight: 200;
+    color: white;
+    font-size: 24px; /* 로고 크기 조정 */
+}
+
+/* 메인 내비게이션 링크들을 담는 컨테이너 */
+.main-nav {
+    display: flex; /* 내부 링크들을 Flexbox로 정렬 */
+    align-items: center; /* 링크들을 세로 중앙 정렬 */
+    gap: 30px; /* 각 링크 사이의 간격 (30px로 설정) */
+    /* 로고와 로그인/상태 영역 사이의 남은 공간을 차지하도록 설정 */
+    flex-grow: 1; /* 남은 공간을 차지 */
+    justify-content: center; /* 남은 공간에서 링크들을 중앙 정렬 */
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 200;
+    padding: 5px 10px; /* 링크 클릭 영역 확보 */
+    text-shadow: 1px 1px 0px gray;
+}
+
+/* 로그인 버튼 및 사용자 상태 표시 영역 */
+.user-status-area {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* 로그인 버튼과 상태 텍스트 사이 간격 */
+}
+
+.login-button {
+    text-decoration: none;
+    color: white;
+    font-weight: bold; /* 로그인 버튼은 좀 더 강조 */
+    padding: 5px 10px;
+    border: 1px solid white; /* 테두리 추가 예시 */
+    border-radius: 5px;
+}
+
+#successlogin {
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    /* position: absolute; 제거 (Flexbox가 배치하므로) */
+    /* 필요하다면 특정 위치에 오게 하려면 relative를 부모에, absolute를 여기에 적용 */
+}
+
+#user-status-text {
+    /* <name> 태그 대신 사용되는 span */
+    color: white;
+}
+
+/* body의 상단 여백 설정 (menubar가 fixed이므로) */
+body {
+    margin-top: 50px; /* menubar의 높이만큼 여백 */
+}
+</style>
+<body>
+    <div id="menubar">
+    <div class="header-container"> <h2 class="logo">|Logo|</h2>
+
+        <nav class="main-nav"> <a href="">Genre</a>
+            <a href="">Mood</a>
+            <a href="">Colors</a>
+        </nav>
+        
+        <div class="user-status-area"> <a href="/login" target="_blank" class="login-button">Login</a>
+            <div id="successlogin">
+                <span id="user-status-text"> please login first. </span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

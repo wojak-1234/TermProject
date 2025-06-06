@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="moodpickerstyle.css">
+<link rel="stylesheet" href="/static/moodpickerstyle.css">
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,19 +15,20 @@
 </canvas>
 
 <!-- 메뉴 바 부분입니다. -->
-<div id="menubar">
-<!--
-<img src="/logo_pixian_ai.png" style="width: 45px; height: auto; position : absolute; left:40px; opacity: 50%;"/>
--->
-<span id="menu">
-<h2 style="position: absolute; top: -15px; left : 20px; font-weight: 200;">|Logo|</h2>
-<a href="/">Home</a>
-<a href="genre">Genre</a>
-<a href="stats">Statistics</a>
-<a href="color">Colors</a>
-</span>
-</div>
+    <div id="menubar">
+        <div id="menu">
+            <a><img src="" alt="asdf"></a>
+            <a href="/home">home</a>
+            <a href="/color">color</a>
+            <a href="/search">search</a>
+            <a href="/mood">mood</a>
 
+        </div>
+        <div id="successlogin">
+            <img src="{{profile_image_url}}" id="profileimage"/>
+            <div id="nameplace"> {{display_name}}</div>
+        </div>
+    </div>
 <!-- Mood 나타냄. -->
 <div id="maintext" class="fading-text"></div>
 
@@ -43,16 +44,22 @@
 </div>
 <button type="submit" title="click" id="submitbutton">Recommend me!</button>
 </form>
+<script>
+    buttonclick = document.getElementById("submitbutton");
+    buttonclick.addEventListener("click",function(){
+    })
+    
+</script>
 <!-- 달 관련 이미지 부분입니다.-->
-<img src="moon_pixian_ai.png" id="moon" alt="외부 이미지" style="z-index: 2; position: absolute; left : 950px; width:400px; height: auto; "/>
+<img src="/static/moon_pixian_ai.png" id="moon" alt="외부 이미지" style="z-index: 2; position: absolute; left : 950px; width:400px; height: auto; "/>
 
 <!-- 해 관련 이미지 부분입니다.-->
-<img src="sun_pixian_ai.png" id="sun" style="position: absolute; z-index: 2; width:  240px; height: auto;right : 1000px; top:50px;">
-<script src="background.js"></script>
+<img src="/static/sun_pixian_ai.png" id="sun" style="position: absolute; z-index: 2; width:  240px; height: auto;right : 1000px; top:50px;">
+<script src="/static/background.js"></script>
 <!-- 제출 버튼 관련 부분입니다. -->
 <div id="bottomarea">Internet And Web Basics : Team 15<br>
     202555375 최민준
-    202555391 홍유정
+    202555381 홍유정
     202555616 문보미
 </div>
 </body>

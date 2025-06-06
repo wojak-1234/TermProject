@@ -1,0 +1,98 @@
+@font-face {
+  font-family: 'lightfont';
+  src: url('font/AntipastoPro-Extralight_trial.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#text{
+  position: relative;
+  left:10px;
+}
+#menubar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100vw;
+  height: 50px;
+  background-color: black;
+  opacity: 0.8;
+  box-shadow: 0px 1px 10px white;
+  color: white;
+}
+body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-bottom: 70px;
+        }
+/* 메뉴 항목 래퍼 */
+#menu {
+  display: flex;
+  gap: 15px;
+}
+
+/* 메뉴 링크 */
+#menu a {
+  
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  text-shadow: 1px 1px 0px gray;
+  font-family: 'lightfont', sans-serif;
+  font-size: 20px;
+  transition: color 0.3s ease;
+  padding-right: 20px;
+}
+
+#menu a:hover {
+  color: #f5f5f5;
+}
+
+/* 우측 로그인 텍스트 */
+#successlogin {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center ;
+  font-weight: 400;
+  color: white;
+  font-size: 16px;
+  max-width: 200px;
+  padding-left: 100px;
+}
+
+        #bottomarea {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #f0f0f0;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 0.9em;
+            line-height: 1.4;
+            z-index: 1000;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease;
+        }
+        #bottomarea:hover {
+            background-color: rgba(0, 0, 0, 0.95);
+        }
+#nameplace{
+  font-size: 20px;
+  padding-right : 80px;
+}

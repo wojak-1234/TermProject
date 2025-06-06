@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="/static/aftermooddesign.css">
+<body id="bodypart">
+<!-- 메뉴 바 디자인과 하단 바 디자인을 미리 삽입해 두었습니다. -->
+<!--스타일 지정 종료-->
+<img id="blurimg">
+<!-- 메뉴 바 부분입니다. -->
+    <div id="menubar">
+        <div id="menu">
+            <a><img src="" alt="asdf"></a>
+            <a href="/">home</a>
+            <a href="/color">color</a>
+            <a href="/search">search</a>
+            <a href="/mood">mood</a>
+        </div>
+        <div id="successlogin">
+            <img src="{{profile_image_url}}" id="profileimage"/>
+            <div id="nameplace"> {{display_name}}</div>
+        </div>
+    </div>
+
+
+<!--하단 바 부분입니다.-->
+<div id="bottomarea">Internet And Web Basics : Team 15<br>
+    202555375 최민준
+    202555381 홍유정
+    202555616 문보미
+</div>
+<script>
+  function shake(element){
+    element.style.left -= '1px';
+  }
+  menu=document.getElementById("genre");
+  mood=document.getElementById("mood");
+  color=document.getElementById("color");
+  menu.addEventListener("click",function () { alert("Please Login First")})
+  mood.addEventListener("click",function () { alert("Please Login First")})
+  color.addEventListener("click",function () { alert("Please Login First")})
+</script>
+
+<div id="toptext"> here's Our Recommendation </div>
+<div id="middletext">10 selections are provided</div>
+
+<div id="whole">
+    <button id="previous" style="color : white">＜</button>
+    <div id="songcontainer">
+        <div id="songtitle"></div>
+        <div><img id="songimage" alt="image not found" style="width: 250px; height: auto;"> </div>
+        <audio id="currentaudio" src=""></audio>
+    </div>
+    <button id="next" style=" color: white;">＞</button>
+</div>
+
+<script>
+    let previous1 = document.getElementById("previous");
+    let next1 = document.getElementById("next");
+    let index = 0;
+    const prodata = JSON.parse({{ finalresponse | tojson }});
+    function updateDisplay() {
+    current_track = prodata.tracks.items[index];
+    current_name = current_track.album.name;
+    current_song_img = current_track.album.images[0].url;
+
+    document.getElementById("songimage").src = current_song_img;
+    document.getElementById("songtitle").innerHTML = current_name;
+    document.getElementById("blurimg").src = current_song_img;
+    // document.getElementById("currentaudio").src = current_song_url;
+}
+
+    next1.addEventListener("click",function(){
+        if(index==9){
+            alert('This is the last page!');
+        }
+        else
+        {
+        index=index + 1;
+        current_track = prodata.tracks.items[index];
+        current_name = current_track.album.name;
+        updateDisplay();
+        }
+    })
+    
+    previous1.addEventListener("click",function(){
+        if(index==0){
+            alert('This is the first page!');
+        }
+        else
+        {
+        index-=1;
+        current_track = prodata.tracks.items[index];
+        current_name = current_track.album.name;
+       // current_song_url = current_track.preview_url;
+        current_song_img = current_track.album.images[0].url;
+        updateDisplay();
+        }
+    })
+    
+    updateDisplay();
+
+</script>
+</body>
+</html>
+
+

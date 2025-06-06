@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Analyzer</title>
+    <link rel="stylesheet" href="/static/searchdesign.css"> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+
+    <style>
+        /* 기존 스타일(body, menubar, bottomarea 등)과 중복될 수 있으므로,
+           필요한 스타일만 추가하거나 기존 CSS 파일에 통합하는 것을 권장합니다. */
+
+    </style>
+</head>
+<body>
+    <div id="menubar">
+        <div id="menu">
+            <a><img src="" alt="asdf"></a>
+            <a href="/home">home</a>
+            <a href="/color">color</a>
+            <a href="/search">search</a>
+            <a href="/mood">mood</a>
+        </div>
+        <div id="successlogin">
+            <img src="{{profile_image_url}}" id="profileimage"/>
+            <div id="nameplace"> {{display_name}}</div>
+        </div>
+    </div>
+    <div id="whole">
+        <div id="song-search-section">
+            <h2>Type your song title!</h2>
+            <input type="text" id="song-query-input" placeholder="Search here">
+            <button id="search-song-btn">
+                View
+            </button>
+            <div id="song-results-display">
+                <p style="color: rgba(255, 255, 255, 0.7);">please search the song</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="bottomarea">Internet And Web Basics : Team 15<br>
+        202555375 최민준<br>
+        202555381 홍유정<br>
+        202555616 문보미
+    </div>
+
+<script src="/static/searchjs.js"></script>
+</body>
+</html>

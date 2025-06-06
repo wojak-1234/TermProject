@@ -1,0 +1,205 @@
+@font-face {
+  font-family: 'lightfont';
+  src: url('font/AntipastoPro-Extralight_trial.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#text{
+  position: relative;
+  left:10px;
+}
+#menubar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100vw;
+  height: 50px;
+  background-color: black;
+  opacity: 0.8;
+  box-shadow: 0px 1px 10px white;
+  color: white;
+}
+
+/* 메뉴 항목 래퍼 */
+#menu {
+  display: flex;
+  gap: 15px;
+}
+
+/* 메뉴 링크 */
+#menu a {
+  
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  text-shadow: 1px 1px 0px gray;
+  font-family: 'lightfont', sans-serif;
+  font-size: 20px;
+  transition: color 0.3s ease;
+  padding-right: 20px;
+}
+
+#menu a:hover {
+  color: #f5f5f5;
+}
+
+/* 우측 로그인 텍스트 */
+#successlogin {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center ;
+  font-weight: 400;
+  color: white;
+  font-size: 16px;
+  max-width: 200px;
+  padding-left: 100px;
+}
+
+        #bottomarea {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #f0f0f0;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 0.9em;
+            line-height: 1.4;
+            z-index: 1000;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease;
+        }
+
+        #bottomarea:hover {
+            background-color: rgba(0, 0, 0, 0.95);
+        }
+#nameplace{
+  font-size: 20px;
+  padding-right : 40px;
+}
+
+/* 텍스트 위치 조정 */
+#text {
+  position: relative;
+  left: 10px;
+}
+#profileimage{
+  height : 30px;
+  width: auto;
+  border-radius: 100px;
+}
+#nameplace{
+  font-size: 20px;
+  padding-right : 80px;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-image: linear-gradient(to right, black, #404040 50%, black);
+    min-height: 100vh;
+    display: flex;  
+    flex-direction: column;
+    align-items: center; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
+}
+
+#whole {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 120px);
+    padding-top: 80px;
+    padding-bottom: 80px;
+    width: 100%;
+    box-sizing: border-box;
+}
+#hidden-images {
+    display: none;
+}
+
+#colorcontainer {
+    box-shadow: 0px 0px ;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    width: 90%;
+    max-width: 1000px;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 30px rgba(255, 255, 255,0.2);
+    color: white;
+    max-height: 60vh;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.1);
+}
+#colorcontainer > div {
+    flex: 1 1 calc(33.33% - 20px);
+    max-width: calc(33.33% - 20px);
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: flex-start;
+    padding: 15px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    min-height: 150px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.album-image-item {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease;
+    margin: 5px; 
+    flex-shrink: 0; 
+}
+
+.album-image-item:hover {
+    transform: scale(1.05);
+
+}
+
+.color-name-text {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 5px; 
+}
+
+#topmessage{
+  display: flex;
+  align-self: center;
+  color:white;
+  font-weight: 200;
+  font-size:40px;
+  text-shadow: 2px 2px 0px grey;
+}
+
+#middlemessage{
+  display: flex;
+  align-self: center;
+  color:white;
+  font-weight: 200;
+  font-size:20px;
+  text-shadow: 2px 2px 0px grey;
+}

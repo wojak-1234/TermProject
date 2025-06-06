@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Analyzer - Color</title>
+    <link rel="stylesheet" href="/static/colorpickdesign.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+
+    <style>
+    </style>
+</head>
+<body>
+    <div id="menubar">
+        <div id="menu">
+            <a><img src="" alt="asdf"></a>
+            <a href="/home">home</a>
+            <a href="/color">color</a>
+            <a href="/search">search</a>
+            <a href="/mood">mood</a>
+        </div>
+        <div id="successlogin">
+            <img src="{{profile_image_url}}" id="profileimage"/>
+            <div id="nameplace"> {{display_name}}</div>
+        </div>
+    </div>
+
+    <div id="whole">
+        <div id="hidden-images" style="display: none;"></div>
+        <br>
+<div id="topmessage">Here's Your Music Palette</div>
+<div id="middlemessage">here are result of top 50 tracks.</div>
+<br>
+<br>
+<div id="colorcontainer">
+    <div id="red" style="background-color: rgba(255, 0, 0, 0.3);">a</div>
+    <div id="orange" style="background-color: rgba(255, 165, 0, 0.3);">a</div>
+    <div id="yellow" style="background-color: rgba(255, 255, 0, 0.3);">a</div>
+    <div id="green" style="background-color: rgba(0, 128, 0, 0.3);">a</div>
+    <div id="blue" style="background-color: rgba(0, 0, 255, 0.3);">a</div>
+    <div id="purple" style="background-color: rgba(128, 0, 128, 0.3);">a</div>
+    <div id="ect" style="background-color: rgba(100, 100, 100, 0.3);">a</div> <div id="black" style="background-color: rgba(0, 0, 0, 0.1);">a</div>
+    <div id="white" style="background-color: rgba(255, 255, 255, 0.3);">a</div>
+    <div id="gray" style="background-color: rgba(128, 128, 128, 0.3);">a</div>
+</div>
+    </div> <div id="bottomarea">Internet And Web Basics : Team 15</div></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+    <script>
+        let toptracks = JSON.parse({{ finalresponse | tojson | default('{"items": []}') }});
+
+        let colorThief = new ColorThief();
+        let loadedCount = 0;
+        let albumDataForClassification = [];
+        const categorizedAlbumImages = {
+            '빨강': [], '주황': [], '노랑': [], '초록': [], '파랑': [],
+            '보라/핑크': [], '기타': [], '검정': [], '흰색': [], '회색': []
+        };
+        const colorIdMapping = {
+            '빨강': 'red', '주황': 'orange', '노랑': 'yellow', '초록': 'green', '파랑': 'blue',
+            '보라/핑크': 'purple', '기타': 'ect', '검정': 'black', '흰색': 'white', '회색': 'gray'
+        };
+
+        // --- 이미지 로드 및 색상 분류 부분 ---
+        const numberOfTracksToProcess = Math.min(50, toptracks.items.length);
+
+        if (numberOfTracksToProcess === 0) {
+            // 처리할 트랙이 없으면 바로 UI 업데이트 (빈 상태로)
+            populateColorAlbumImages(categorizedAlbumImages);
+        } else {
+            for (let i = 0; i < numberOfTracksToProcess; i++) {
+                const img = new Image();
+                img.crossOrigin = "Anonymous";
+                const track = toptracks.items[i];
+                const imageUrl = track?.album?.images[0]?.url;
+
+                // 이미지 URL이 없거나 유효하지 않은 경우 처리 (에러 처리 로직 제외 요청에 따라 간소화)
+                if (!imageUrl) {
+                    albumDataForClassification[i] = { color: [0, 0, 0], imageUrl: null }; // 유효하지 않은 데이터 표시
+                    loadedCount++;
+                    if (loadedCount === numberOfTracksToProcess) {
+                        processAllColors();
+                    }
+                    continue;
+                }
+
+                img.src = imageUrl;
+
+                img.onload = function () {
+                    try {
+                        const color = colorThief.getColor(img);
+                        albumDataForClassification[i] = { color: color, imageUrl: imageUrl };
+                    } catch (e) {
+                        // ColorThief 오류 발생 시 기본 색상으로 처리
+                        albumDataForClassification[i] = { color: [0, 0, 0], imageUrl: imageUrl };
+                    }
+
+                    loadedCount++;
+                    if (loadedCount === numberOfTracksToProcess) {
+                        processAllColors();
+                    }
+                };
+
+                img.onerror = function () {
+                    // 이미지 로드 실패 시 기본 색상으로 처리
+                    albumDataForClassification[i] = { color: [0, 0, 0], imageUrl: imageUrl };
+                    loadedCount++;
+                    if (loadedCount === numberOfTracksToProcess) {
+                        processAllColors();
+                    }
+                };
+
+                // DOM에 추가 (보이지 않게 하여 로드)
+                document.getElementById("hidden-images").appendChild(img);
+            }
+        }
+
+        // --- 모든 이미지 처리 완료 후 호출될 함수 ---
+        function processAllColors() {
+            // 앨범 이미지 URL을 색상별로 분류합니다.
+            albumDataForClassification.forEach(data => {
+                if (data && data.imageUrl) { // 유효한 이미지 데이터만 처리
+                    const classifiedColorName = classifyColor(data.color);
+                    categorizedAlbumImages[classifiedColorName].push({
+                        url: data.imageUrl,
+                        originalRgb: data.color
+                    });
+                }
+            });
+            console.log("색상별 분류된 앨범 이미지 데이터:", categorizedAlbumImages);
+
+            dynamic_image();
+        }
+
+        // --- RGB to HSL 변환 함수 ---
+        function rgbToHsl(r, g, b) {
+            r /= 255; g /= 255; b /= 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+
+            if (max === min) {
+                h = s = 0; 
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                h *= 60;
+            }
+            return [h, s, l];
+        }
+
+        // --- 색상 분류 함수 ---
+        function classifyColor(rgb) {
+            const [r, g, b] = rgb;
+            const [h, s, l] = rgbToHsl(r, g, b);
+
+            // 검정/흰색/회색 처리 (채도와 밝기 기준 강화)
+            if (s < 0.15 && l < 0.1) return "검정";
+            if (s < 0.15 && l > 0.9) return "흰색";
+            if (s < 0.15) return "회색";
+
+            // 유채색 (색상 값 범위 조정)
+            if ((h >= 0 && h < 15) || (h >= 345 && h <= 360)) return "빨강";
+            if (h >= 15 && h < 45) return "주황";
+            if (h >= 45 && h < 75) return "노랑";
+            if (h >= 75 && h < 165) return "초록";
+            if (h >= 165 && h < 265) return "파랑";
+            if (h >= 265 && h < 345) return "보라/핑크";
+
+            return "기타";
+        }
+
+        // --- 동적으로 이미지를 생성하여 각 색상 div에 추가하는 함수 ---
+        // 이 함수는 각 색상 div의 내용을 (a 텍스트 포함) 이미지로 대체합니다.
+        function dynamic_image() {
+            for (const classifiedColorName in categorizedAlbumImages) {
+                const htmlColorId = colorIdMapping[classifiedColorName];
+                const colorDiv = document.getElementById(htmlColorId);
+
+                if (colorDiv) {
+                    const albumItems = categorizedAlbumImages[classifiedColorName];
+                    colorDiv.innerHTML = `<div class="color-name-text" style="font-weight:400; ">${colorIdMapping[classifiedColorName]}</div>`;
+
+                    if (albumItems && albumItems.length > 0) {
+                        albumItems.forEach(album => {
+                            const newImage = document.createElement('img');
+                            newImage.src = album.url;
+                            newImage.alt = `${classifiedColorName} 앨범 커버`;
+                            newImage.className = "album-image-item";
+
+                            colorDiv.appendChild(newImage);
+                        });
+                    } else {
+                        const noAlbumText = document.createElement('p');
+                        noAlbumText.textContent = "None";
+                        noAlbumText.style.fontSize = '0.8em';
+                        noAlbumText.style.color = 'rgba(255, 255, 255, 0.6)';
+                        colorDiv.appendChild(noAlbumText);
+                    }
+                }
+            }
+        }</script>
+</body>
+</html>

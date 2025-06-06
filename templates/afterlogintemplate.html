@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+  <body>
+<!-- 메뉴 바 디자인과 하단 바 디자인을 미리 삽입해 두었습니다. -->
+ <link rel="stylesheet" href="/static/afterlogintemplatedesign.css">
+<!--스타일 지정 종료-->
+
+<!-- 메뉴 바 부분입니다. -->
+    <div id="menubar">
+        <div id="menu">
+            <a><img src="" alt="asdf"></a>
+            <a href="/home">home</a>
+            <a href="/color">color</a>
+            <a href="/search">search</a>
+            <a href="/mood">mood</a>
+        </div>
+        <div id="successlogin">
+            <img src="{{profile_image_url}}" id="profileimage"/>
+            <div id="nameplace"> {{display_name}}</div>
+        </div>
+    </div>
+<div style="
+  text-align: center;
+  margin-top: 100px;
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(to right, #ff9966, #ff5e62);
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+">
+  Menu Description
+</div>
+
+<!-- 메뉴별 설명 박스 -->
+<div id="menu-description" style="
+  text-align: left;
+  margin: 40px auto 60px auto;
+  font-size: 16px;
+  line-height: 1.8;
+  background: linear-gradient(to bottom right, #ff9966, #ff5e62, #ffc371);
+  padding: 30px;
+  border-radius: 10px;
+  color: white;
+  width: 80%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+">
+  <ul style="list-style-type: disc;">
+    <li style="margin-bottom: 30px;">
+      <strong>Genre:</strong>
+      Displays a graph showing the distribution of genres in the user's recently played music, making it easy to understand the user's current music preferences.
+    </li>
+    <li style="margin-bottom: 30px;">
+      <strong>Mood-based Song Recommendations:</strong>
+      Suggests music that matches the mood selected by the user, allowing for quick and easy discovery of music that fits a desired mood.
+    </li>
+    <li style="margin-bottom: 30px;">
+      <strong>Statistics:</strong>
+      Provides insights and analytics based on your listening habits and patterns.
+    </li>
+    <li style="margin-bottom: 10px;">
+      <strong>Colors:</strong>
+      Visualizes your music taste through color themes that reflect your mood and style.
+    </li>
+  </ul>
+</div>
+</div>
+<!--하단 바 부분입니다.-->
+<div id="bottomarea">Internet And Web Basics : Team 15<br>
+    202555375 최민준
+    202555381 홍유정
+    202555616 문보미
+</div>
+</body>
+</html>

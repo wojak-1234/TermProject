@@ -1,0 +1,249 @@
+@font-face {
+  font-family: 'lightfont';
+  src: url('font/AntipastoPro-Extralight_trial.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#text{
+  position: relative;
+  left:10px;
+}
+#menubar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100vw;
+  height: 50px;
+  background-color: black;
+  opacity: 0.8;
+  box-shadow: 0px 1px 10px white;
+  color: white;
+}
+
+/* 메뉴 항목 래퍼 */
+#menu {
+  display: flex;
+  gap: 15px;
+}
+
+/* 메뉴 링크 */
+#menu a {
+  
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  text-shadow: 1px 1px 0px gray;
+  font-family: 'lightfont', sans-serif;
+  font-size: 20px;
+  transition: color 0.3s ease;
+  padding-right: 20px;
+}
+
+#menu a:hover {
+  color: #f5f5f5;
+}
+
+/* 우측 로그인 텍스트 */
+#successlogin {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center ;
+  font-weight: 400;
+  color: white;
+  font-size: 16px;
+  max-width: 200px;
+  padding-left: 100px;
+}
+
+        #bottomarea {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #f0f0f0;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 0.9em;
+            line-height: 1.4;
+            z-index: 1000;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease;
+        }
+
+        #bottomarea:hover {
+            background-color: rgba(0, 0, 0, 0.95);
+      } 
+#toptext{
+    position : absolute;
+    color :white;
+    text-shadow: 2px 2px 0px gray;
+    font-weight : 500;
+    top : 125px;
+    left: 50%; 
+    transform: translateX(-50%); 
+
+    padding-left: 50px;
+    padding-right : 50px;
+    padding-top : 10px;
+    padding-bottom : 10px;
+    white-space: nowrap; 
+    font-size : 40px;
+}
+#middletext{
+    position : absolute;
+    color :white;
+    text-shadow: 2px 2px 0px gray;
+    font-weight : 200;
+    top : 180px;
+    left: 50%; 
+    transform: translateX(-50%); 
+
+    padding-left: 50px;
+    padding-right : 50px;
+    padding-top : 10px;
+    padding-bottom : 10px;
+    white-space: nowrap; 
+    font-size : 20px;
+}
+body {
+    display: flex;
+margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;  
+    align-items: center; /* 전체 콘텐츠 수평 중앙 정렬 */
+    justify-content: center;
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤 허용 */
+    overflow-x: hidden; /* 가로 스크롤 방지 */ 
+    min-height: 100vh;       
+    margin: 0;
+    background-color: #f4f4f4; 
+
+
+    background-size: cover; 
+    background-position: center center; 
+    background-repeat: no-repeat; 
+
+}
+
+#whole {
+    width: 90%;
+    max-width: 1200px;
+    display: flex; 
+    justify-content: center; 
+}
+
+#player-controls {
+    display: flex; /* 이 컨테이너의 자식들을 가로로 나란히 배치 */
+    justify-content: space-between; 
+    align-items: center; /* 세로 중앙 정렬 */
+    width: 100%; /* 부모 whole의 전체 너비를 차지 */
+    max-width: 800px; /* 플레이어 컨트롤의 최대 너비 지정 (선택 사항) */
+    padding: 20px;
+    box-sizing: border-box; /* 패딩이 너비에 포함되도록 */
+}
+
+#songcontainer {
+    box-shadow: 0px 6px 0px gray;
+    color: white;
+    text-shadow: 2px 2px 0px gray;
+    font-weight: 500;
+    background-color: black;
+    border-radius: 20px;
+    padding: 10px 50px;
+
+    /* songcontainer 내부 요소들을 세로로 쌓고 중앙 정렬 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* songcontainer 내부 요소들 사이 간격 */
+}
+
+/* 버튼들은 player-controls의 Flex 아이템이 되므로, relative position은 필요 없습니다. */
+ #next {
+  /* 기존 속성 (background-color, color, cursor, font-size 등은 유지) */
+  top : 130px;
+  right : -10px;
+    position: relative;
+    padding: 0; /* ⭐ 기존 패딩은 제거합니다. (고정된 width/height를 사용하므로) ⭐ */
+
+    width: 50px;   /* ⭐ 버튼의 고정된 너비 설정 (원하는 크기로 조절) ⭐ */
+    height: 50px;  /* ⭐ 버튼의 고정된 높이 설정 (원하는 크기로 조절) ⭐ */
+
+    /* ⭐ 버튼 안의 내용(예: '＜', '＞' 문자)을 중앙에 정렬 ⭐ */
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center;     /* 세로 중앙 정렬 */
+
+    border-radius: 50%; /* ⭐ 버튼을 완전한 원형으로 만듭니다 (width와 height가 같을 때) ⭐ */
+
+    background-color: #333;
+    color: white; /* 인라인 스타일 대신 여기에 추가 */
+    cursor: pointer;
+    font-size: 1.5em; /* 텍스트가 원형 버튼 안에 잘 맞도록 크기 조절 필요 */
+        box-shadow: 0px 6px 0px gray;
+}
+#previous{
+  /* 기존 속성 (background-color, color, cursor, font-size 등은 유지) */
+  top : 130px;
+  left : -10px;
+    position: relative;
+    padding: 0; /* ⭐ 기존 패딩은 제거합니다. (고정된 width/height를 사용하므로) ⭐ */
+
+    width: 50px;   /* ⭐ 버튼의 고정된 너비 설정 (원하는 크기로 조절) ⭐ */
+    height: 50px;  /* ⭐ 버튼의 고정된 높이 설정 (원하는 크기로 조절) ⭐ */
+
+    /* ⭐ 버튼 안의 내용(예: '＜', '＞' 문자)을 중앙에 정렬 ⭐ */
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center;     /* 세로 중앙 정렬 */
+
+    border-radius: 50%; /* ⭐ 버튼을 완전한 원형으로 만듭니다 (width와 height가 같을 때) ⭐ */
+
+    background-color: #333;
+    color: white; /* 인라인 스타일 대신 여기에 추가 */
+    cursor: pointer;
+    font-size: 1.5em; /* 텍스트가 원형 버튼 안에 잘 맞도록 크기 조절 필요 */
+        box-shadow: 0px 6px 0px gray;
+}
+#previous:hover, #next:hover {
+    background-color: #555;
+}
+
+#songtitle{
+    color : white;
+    font-weight: 200;
+    font-size: 20px;
+}
+#blurimg {
+    width: 100vw;
+    height: 100vh;
+    filter: blur(100px); /* 블러 강도는 원하는 대로 조절하세요 (예: 15px-30px) */
+    z-index: -2;
+    position: absolute;
+    top: 0; /* 화면 상단에 정확히 배치 */
+    left: 0; /* 화면 좌측에 정확히 배치 */
+    object-fit: cover; /* 이미지가 엘리먼트를 꽉 채우도록 설정 */
+    
+    /* ⭐ 핵심: Opacity와 그에 대한 전환 효과 추가 ⭐ */
+    opacity: 1; /* 기본적으로 이미지를 보이게 설정 */
+    transition: opacity 0.5s ease-in-out; /* 0.5초 동안 투명도가 부드럽게 변하도록 설정 */
+    /* 기존 'transition: src ...' 부분은 제거하거나 filter만 남겨도 무방합니다. */
+}
+#profileimage{
+  height : 30px;
+  width: auto;
+  border-radius: 100px;
+}
+#nameplace{
+  font-size: 20px;
+  padding-right : 80px;
+}
