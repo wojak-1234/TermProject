@@ -165,7 +165,7 @@ def color():
     current_dn = session['display_name']
     current_piu = session['profile_image_url']
     query_parameter={'type':"tracks",
-                     'time_range':'short_term',
+                     'time_range':'long_term',
     'limit':50 }
     access_token = session['access_token']
     user_headers = {
