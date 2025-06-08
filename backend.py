@@ -44,17 +44,17 @@ def pickmood():
     moodvalue = float(request.form.get('moodvalue'))
     header1 = {'Authorization': f"Bearer {session.get('access_token')}"}
     if moodvalue <= 0.333:
-        search_term = 'calm morning songs'  # 또는 'morning playlist' 등
+        search_term = 'calm morning songs'
     elif moodvalue <= 0.666:
-        search_term = 'upbeat pop for noon'  # 또는 'noon playlist' 등
+        search_term = 'upbeat pop for noon'
     else:
-        search_term = 'relaxing evening jazz'  # 또는 'evening playlist' 등
+        search_term = 'relaxing evening jazz'
 
     query_params = {
-        'q': search_term,  # 'q' 파라미터에는 구체적인 검색어를 넣습니다.
-        'type': 'track',  # 트랙과 플레이리스트를 동시에 검색 (예시)
-        'limit': 10,  # 검색 결과 수 제한
-        'market': 'KR'  # 한국 시장으로 제한 (권장)
+        'q': search_term,
+        'type': 'track',
+        'limit': 10,
+        'market': 'KR'
     }
     current_dn = session['display_name']
     current_piu = session['profile_image_url']
@@ -135,12 +135,19 @@ def callback():
         }
         # 'me' 엔드포인트에 요청 (사용자 ID 필요 없음)
         user_profile_response = requests.get(f"{SPOTIFY_API_BASE_URL}me", headers=user_headers)
+
+        print("Status Code:", user_profile_response.status_code)
+        print("Response Text:", user_profile_response.text)
+
+
         user_profile_response.raise_for_status()
         user_profile = user_profile_response.json()
 
         # 세션에 사용자 정보 저장
         session['display_name'] = user_profile.get('display_name', 'Spotify 사용자')
-        session['profile_image_url'] = user_profile.get('images', [{}])[0].get('url')
+        images = user_profile.get('images', [])
+        profile_image_url = images[0]['url'] if images else None
+        session['profile_image_url'] = profile_image_url
         current_dn = session['display_name']
         current_piu = session['profile_image_url']
 # 오류 처리방법
@@ -158,7 +165,7 @@ def color():
     current_dn = session['display_name']
     current_piu = session['profile_image_url']
     query_parameter={'type':"tracks",
-                     'time_range':'long_term',
+                     'time_range':'short_term',
     'limit':50 }
     access_token = session['access_token']
     user_headers = {
@@ -167,6 +174,10 @@ def color():
     try:
         top_track_response = requests.get('https://api.spotify.com/v1/me/top/tracks', headers=user_headers,
                                           params=query_parameter)
+
+        print(f"Top Tracks API Status Code: {top_track_response.status_code}")
+        print(f"Top Tracks API Response Text: {top_track_response.text}")
+
         top_track_response.raise_for_status()
         raw_toptrack = top_track_response.json()
         final_toptrack = json.dumps(raw_toptrack, ensure_ascii=False)
@@ -181,8 +192,8 @@ def color():
     except Exception as e:
         return f"예상치 못한 오류: {e}"
 
-@app.route('/search') # 이전 Blueprint의 analyze_song_page와 동일한 역할
-def search_page(): # 함수 이름은 중복되지 않게 변경
+@app.route('/search')
+def search_page():
     """
     곡 검색 및 분석 페이지를 렌더링합니다.
     """
@@ -198,10 +209,7 @@ def search_page(): # 함수 이름은 중복되지 않게 변경
 
 # 프론트엔드 JavaScript에서 호출하는 API 엔드포인트
 @app.route('/api/search', methods=['GET'])
-def api_search_song_info_direct(): # 또는 song_analyzer.py의 api_search_song_info
-    """
-    Spotify API를 통해 곡을 검색하고 정보를 반환합니다.
-    """
+def api_search_song_info_direct():
     song_query = request.args.get('q')
 
     if not song_query:
@@ -214,11 +222,10 @@ def api_search_song_info_direct(): # 또는 song_analyzer.py의 api_search_song_
     headers = {'Authorization': f'Bearer {access_token}'}
 
     try:
-        # 1. Spotify Search API 호출 (이것만 사용합니다!)
         search_params = {
             'q': song_query,
             'type': 'track',
-            'limit': 1 # 가장 관련성 높은 1개만 가져옵니다.
+            'limit': 1
         }
         search_response = requests.get(
             f"{SPOTIFY_API_BASE_URL}search",
@@ -232,27 +239,17 @@ def api_search_song_info_direct(): # 또는 song_analyzer.py의 api_search_song_
         if not tracks:
             return jsonify({"error": "검색 결과가 없습니다."})
 
-        # 가장 첫 번째 (가장 관련성 높은) 트랙 정보 추출
         first_track = tracks[0]
-        # track_id = first_track['id'] # 이제 audio-features 호출이 없으므로 track_id는 필수가 아님
         track_name = first_track['name']
         artist_name = first_track['artists'][0]['name'] if first_track['artists'] else 'Unknown Artist'
         album_image_url = first_track['album']['images'][0]['url'] if first_track['album']['images'] else None
-        popularity = first_track['popularity'] # <--- 인기도는 여기서 이미 가져옵니다!
+        popularity = first_track['popularity']
 
-        # 2. Spotify Audio Features API 호출 부분은 삭제하거나 주석 처리합니다.
-        #    더 이상 이 데이터를 가져올 수 없으므로 관련 코드를 제거해야 합니다.
-
-        # 필요한 정보만 추출하여 반환
         result_data = {
             "track_name": track_name,
             "artist_name": artist_name,
             "album_image_url": album_image_url,
             "popularity": popularity,
-            # 'danceability', 'energy', 'valence' 등은 제거하거나 "N/A" 등으로 처리합니다.
-            # "danceability": "N/A",
-            # "energy": "N/A",
-            # "valence": "N/A",
         }
 
         return jsonify(result_data)
@@ -263,6 +260,9 @@ def api_search_song_info_direct(): # 또는 song_analyzer.py의 api_search_song_
     except Exception as e:
         print(f"서버 처리 중 예상치 못한 오류: {e}")
         return jsonify({"error": f"서버 오류: {e}"}), 500
-
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('realhome'))
 if __name__ == '__main__':
     app.run(debug=True)

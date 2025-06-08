@@ -65,8 +65,6 @@
         const numberOfTracksToProcess = Math.min(50, toptracks.items.length);
 
         if (numberOfTracksToProcess === 0) {
-            // 처리할 트랙이 없으면 바로 UI 업데이트 (빈 상태로)
-            populateColorAlbumImages(categorizedAlbumImages);
         } else {
             for (let i = 0; i < numberOfTracksToProcess; i++) {
                 const img = new Image();
